@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Youssef Abdalla | Flutter and software developer</title>
+<meta name="description" content="Portfolio of Youssef Abdalla Mohamed, a computer science student who builds Flutter mobile apps, desktop business software and web apps in English and Arabic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #F3F7F7;
+  --surface: #FFFFFF;
+  --ink: #0E2A33;
+  --muted: #4A6670;
+  --line: #D3E0E1;
+  --teal: #0B6E6E;
+  --teal-ink: #FFFFFF;
+  --sun: #F2B33D;
+  --phone: #0E2A33;
+  --shadow: rgba(14, 42, 51, .30);
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --arabic: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A181D;
+    --surface: #11262D;
+    --ink: #E7F1F1;
+    --muted: #9BB4BA;
+    --line: #23414A;
+    --teal: #4FD1C5;
+    --teal-ink: #06262A;
+    --phone: #040D10;
+    --shadow: rgba(0, 0, 0, .55);
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A181D;
+  --surface: #11262D;
+  --ink: #E7F1F1;
+  --muted: #9BB4BA;
+  --line: #23414A;
+  --teal: #4FD1C5;
+  --teal-ink: #06262A;
+  --phone: #040D10;
+  --shadow: rgba(0, 0, 0, .55);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  background: var(--bg);
+  scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 76px);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.65 var(--body);
+}
+h1, h2, h3, p, ul, dl, dd { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 3px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+.site-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+.brand { font: 800 1.3rem/1 var(--display); text-decoration: none; letter-spacing: -.01em; }
+.site-nav ul { display: flex; gap: 2px; overflow-x: auto; }
+.site-nav a {
+  display: block; padding: 8px 12px; border-radius: 8px;
+  text-decoration: none; color: var(--muted); font-weight: 500; font-size: .95rem; white-space: nowrap;
+}
+.site-nav a:hover { color: var(--ink); background: var(--line); }
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+  gap: 56px;
+  align-items: center;
+  padding: 56px 0 72px;
+}
+.hero h1 {
+  font: 800 clamp(2.3rem, 5.2vw, 3.9rem)/1.04 var(--display);
+  letter-spacing: -.025em;
+  margin-bottom: 20px;
+  max-width: 15ch;
+}
+.lede { font-size: 1.2rem; max-width: 36em; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 22px; }
+.btn {
+  display: inline-block; padding: 13px 22px; border-radius: 10px;
+  font: 600 1rem/1.2 var(--body); text-decoration: none; cursor: pointer;
+  border: 2px solid var(--teal);
+}
+.btn-primary { background: var(--teal); color: var(--teal-ink); }
+.btn-secondary { background: transparent; color: var(--ink); border-color: var(--ink); }
+.stack-line { color: var(--muted); font-size: .95rem; max-width: 46ch; }
+
+/* Phone sketch: the one memorable element */
+.stage { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.phone {
+  width: min(292px, 100%);
+  background: var(--phone);
+  border-radius: 40px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -24px var(--shadow);
+  animation: rise .8s cubic-bezier(.2, .7, .2, 1) both;
+}
+@keyframes rise { from { transform: translateY(28px); opacity: 0; } to { transform: none; opacity: 1; } }
+.screen {
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 31px;
+  height: 560px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: .8rem;
+  line-height: 1.35;
+}
+.screen[dir="rtl"] { font-family: var(--arabic); }
+.s-status { display: flex; justify-content: space-between; padding: 12px 20px 4px; font-size: .7rem; font-weight: 600; }
+.s-top { padding: 6px 18px 10px; }
+.s-hello { color: var(--muted); font-size: .72rem; }
+.s-title { font: 800 1.3rem/1.2 var(--display); }
+.s-search {
+  margin: 0 18px 10px; display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; color: var(--muted);
+}
+.s-chips { display: flex; gap: 6px; padding: 0 18px 12px; }
+.s-chip { padding: 5px 11px; border-radius: 99px; border: 1px solid var(--line); font-size: .72rem; }
+.s-chip.on { background: var(--teal); color: var(--teal-ink); border-color: var(--teal); }
+.s-list { padding: 0 18px; display: flex; flex-direction: column; gap: 12px; flex: 1; overflow: hidden; }
+.s-event { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: var(--bg); }
+.s-art { height: 84px; position: relative; overflow: hidden; }
+.s-art::after { content: ""; position: absolute; width: 74px; height: 74px; border-radius: 50%; inset-inline-end: -14px; bottom: -26px; }
+.s-art.one { background: var(--teal); }
+.s-art.one::after { background: var(--sun); }
+.s-art.two { background: var(--sun); }
+.s-art.two::after { background: var(--ink); }
+.s-date {
+  position: absolute; top: 10px; inset-inline-start: 10px; z-index: 1;
+  background: var(--surface); color: var(--ink); border-radius: 8px; padding: 2px 9px; font-weight: 700; font-size: .7rem;
+}
+.s-body { padding: 9px 12px 11px; }
+.s-name { font-weight: 600; }
+.s-place { color: var(--muted); font-size: .72rem; }
+.s-nav { display: flex; justify-content: space-around; border-top: 1px solid var(--line); padding: 9px 8px 13px; font-size: .66rem; color: var(--muted); }
+.s-nav div { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.s-nav .on { color: var(--teal); font-weight: 600; }
+.s-nav svg, .s-search svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.lang { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 99px; padding: 3px; }
+.lang button {
+  border: 0; background: transparent; color: var(--ink); padding: 7px 20px; border-radius: 99px;
+  font: 600 .9rem/1.2 var(--body); cursor: pointer;
+}
+.lang button[lang="ar"] { font-family: var(--arabic); }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.stage-note { font-size: .9rem; color: var(--muted); max-width: 32ch; text-align: center; }
+
+/* Sections */
+.section {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 40px;
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+}
+.section > h2 {
+  font: 700 1.5rem/1.2 var(--display);
+  letter-spacing: -.01em;
+  align-self: start;
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 84px);
+}
+.prose p { max-width: 62ch; }
+.prose p + p { margin-top: 16px; }
+.facts { display: grid; gap: 0; margin-top: 32px; max-width: 62ch; }
+.facts div { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 12px 0; border-top: 1px solid var(--line); }
+.facts dt { color: var(--muted); font-weight: 500; }
+.h3 { font: 700 1.3rem/1.3 var(--display); }
+.meta { color: var(--muted); margin-top: 4px; }
+.fill { background: color-mix(in srgb, var(--sun) 35%, transparent); border-bottom: 1.5px dashed var(--muted); padding: 0 4px; border-radius: 3px; }
+.plain-list { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.plain-list li { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 3px 12px; font-size: .95rem; }
+
+/* Skills */
+.skill-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 40px; }
+.skill-group { border-top: 2px solid var(--ink); padding-top: 14px; }
+.skill-group.lead { grid-column: 1 / -1; border-top-color: var(--teal); border-top-width: 4px; }
+.skill-group h3 { font: 700 1.15rem/1.3 var(--display); }
+.skill-group p { color: var(--muted); margin-top: 4px; font-size: .98rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chips li { border: 1px solid var(--line); background: var(--surface); border-radius: 6px; padding: 3px 11px; font-size: .93rem; }
+.lead .chips li { background: var(--teal); color: var(--teal-ink); border-color: var(--teal); font-weight: 500; }
+
+/* Experience */
+.role + .role { margin-top: 36px; padding-top: 36px; border-top: 1px solid var(--line); }
+.role ul { margin-top: 12px; display: grid; gap: 8px; max-width: 64ch; }
+.role li { padding-inline-start: 18px; position: relative; }
+.role li::before { content: ""; position: absolute; inset-inline-start: 0; top: .72em; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+
+/* Projects */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.filters button {
+  border: 1.5px solid var(--ink); background: transparent; color: var(--ink);
+  padding: 7px 18px; border-radius: 99px; font: 600 .92rem/1.2 var(--body); cursor: pointer;
+}
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
+.case-lead {
+  grid-column: 1 / -1;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-inline-start: 6px solid var(--teal);
+  border-radius: 12px;
+  padding: 28px;
+}
+.case-compact { border-top: 2px solid var(--ink); padding-top: 16px; }
+.case-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.case-lead h3 { font: 800 1.9rem/1.15 var(--display); letter-spacing: -.015em; }
+.case-compact h3 { font: 700 1.3rem/1.2 var(--display); }
+.tag { display: inline-block; font-size: .82rem; font-weight: 600; color: var(--teal); border: 1px solid currentColor; border-radius: 99px; padding: 1px 11px; }
+.status { color: var(--muted); font-size: .88rem; }
+.what { margin-top: 12px; max-width: 66ch; }
+.case dl { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px 16px; margin-top: 18px; font-size: .97rem; }
+.case dt { color: var(--muted); font-weight: 600; }
+.case-link { display: inline-block; margin-top: 18px; font-weight: 600; color: var(--teal); text-underline-offset: 4px; }
+.also { margin-top: 44px; max-width: 66ch; color: var(--muted); }
+
+/* Achievements */
+.wins { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 36px; }
+.wins li { border-top: 2px solid var(--ink); padding-top: 12px; }
+.wins h3 { font: 700 1.12rem/1.3 var(--display); }
+.wins p { margin-top: 6px; color: var(--muted); font-size: .98rem; }
+
+/* Services */
+.services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 40px; }
+.services li { border-top: 2px solid var(--ink); padding-top: 14px; }
+.services h3 { font: 700 1.25rem/1.3 var(--display); }
+.services p { margin-top: 8px; }
+.services .fit { color: var(--muted); font-size: .95rem; }
+.services-note { margin-top: 36px; max-width: 60ch; font-weight: 500; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; }
+.contact-grid h3 { font: 800 1.9rem/1.15 var(--display); letter-spacing: -.015em; }
+.contact-grid > div > p { margin-top: 12px; max-width: 46ch; }
+.field { display: grid; gap: 6px; margin-top: 18px; }
+.field label { font-weight: 600; font-size: .95rem; }
+.field input, .field textarea {
+  width: 100%; font: 400 1rem/1.5 var(--body); color: var(--ink);
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 13px;
+}
+.field textarea { min-height: 130px; resize: vertical; }
+.contact-form .btn { margin-top: 20px; }
+.contact-links li { border-top: 1px solid var(--line); padding: 14px 0; display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 12px; }
+.contact-links li:last-child { border-bottom: 1px solid var(--line); }
+.contact-links span { color: var(--muted); font-weight: 500; }
+.contact-links strong { font-weight: 600; }
+.contact-links a { font-weight: 600; overflow-wrap: anywhere; text-underline-offset: 4px; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: .92rem; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 44px; padding: 40px 0 56px; }
+  .section { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 56px 0; }
+  .section > h2 { position: static; }
+  .skill-groups, .cases, .wins, .services, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .facts div { grid-template-columns: 1fr; gap: 2px; }
+  .case-lead { padding: 22px; }
+  .case-lead h3 { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .phone { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top">Youssef</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="wrap">
+
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <h1 id="hero-title">I build apps for phones and desktops, in English and Arabic.</h1>
+      <p class="lede">Hi, I'm Youssef, a computer science student and Flutter developer. I turn ideas into working software: clean screens, reliable data, and code another developer can pick up and keep improving.</p>
+      <div class="btns">
+        <a class="btn btn-primary" data-contact="email" href="#contact">Email me</a>
+        <a class="btn btn-secondary" href="#projects">See my projects</a>
+      </div>
+      <p class="stack-line">Strongest with Flutter, Dart and Firebase. Also build with Java, C#, Python and SQL databases.</p>
+    </div>
+
+    <div class="stage">
+      <div class="phone">
+        <div class="screen" id="screen" dir="ltr" lang="en">
+          <div class="s-status" dir="ltr"><span>9:41</span><span>5G</span></div>
+          <div class="s-top">
+            <div class="s-hello" data-en="Welcome back" data-ar="أهلاً بعودتك">Welcome back</div>
+            <div class="s-title">Evently</div>
+          </div>
+          <div class="s-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <span data-en="Search events" data-ar="ابحث عن فعالية">Search events</span>
+          </div>
+          <div class="s-chips">
+            <span class="s-chip on" data-en="All" data-ar="الكل">All</span>
+            <span class="s-chip" data-en="Sports" data-ar="رياضة">Sports</span>
+            <span class="s-chip" data-en="Birthday" data-ar="عيد ميلاد">Birthday</span>
+          </div>
+          <div class="s-list">
+            <div class="s-event">
+              <div class="s-art one"><span class="s-date" data-en="21 Sep" data-ar="٢١ سبتمبر">21 Sep</span></div>
+              <div class="s-body">
+                <div class="s-name" data-en="Football with friends" data-ar="كرة قدم مع الأصدقاء">Football with friends</div>
+                <div class="s-place" data-en="City Park" data-ar="الحديقة العامة">City Park</div>
+              </div>
+            </div>
+            <div class="s-event">
+              <div class="s-art two"><span class="s-date" data-en="28 Sep" data-ar="٢٨ سبتمبر">28 Sep</span></div>
+              <div class="s-body">
+                <div class="s-name" data-en="Birthday dinner" data-ar="عشاء عيد ميلاد">Birthday dinner</div>
+                <div class="s-place" data-en="Rooftop restaurant" data-ar="مطعم على السطح">Rooftop restaurant</div>
+              </div>
+            </div>
+          </div>
+          <div class="s-nav">
+            <div class="on">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+              <span data-en="Home" data-ar="الرئيسية">Home</span>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
+              <span data-en="Favourites" data-ar="المفضلة">Favourites</span>
+            </div>
+            <div>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>
+              <span data-en="Profile" data-ar="حسابي">Profile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lang" role="group" aria-label="Language of the app sketch">
+        <button type="button" id="lang-en" lang="en" aria-pressed="true">English</button>
+        <button type="button" id="lang-ar" lang="ar" aria-pressed="false">العربية</button>
+      </div>
+      <p class="stage-note">A sketch of Evently's home screen. Switch the language and the whole layout flips right to left.</p>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about" aria-labelledby="about-h">
+    <h2 id="about-h">About me</h2>
+    <div class="prose">
+      <p>I'm a computer science student who likes building software that someone will really use: a clinic that needs patient records, a team that needs stock control, an audience that reads in Arabic.</p>
+      <p>Most of my work is in Flutter, and I also build with Java, C#, Python and SQL. I care about the parts clients notice later: clear structure, validated data, and documentation that lets someone else take over.</p>
+      <p>I sharpen my problem solving through competitive programming, and I took part in the Egyptian Collegiate Programming Contest (ECPC) with a team of three.</p>
+      <dl class="facts">
+        <div><dt>Main focus</dt><dd>Flutter and Dart mobile apps with Firebase</dd></div>
+        <div><dt>Also build</dt><dd>Desktop tools in Java and Python, web apps in ASP.NET Core</dd></div>
+        <div><dt>App languages</dt><dd>Arabic and English, including right-to-left layouts</dd></div>
+        <div><dt>I speak</dt><dd>Arabic (native), English (B2 upper intermediate)</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section" id="education" aria-labelledby="edu-h">
+    <h2 id="edu-h">Education</h2>
+    <div>
+      <article class="role">
+        <h3 class="h3">B.Sc. in Computer Science</h3>
+        <p class="meta">Faculty of Computer and Information Technology, Helwan National University. Expected 2028</p>
+        <ul class="plain-list" aria-label="Relevant coursework">
+          <li>Advanced programming languages</li>
+          <li>Database design and T-SQL</li>
+          <li>System analysis and design (UML, DFD)</li>
+          <li>Object-oriented programming</li>
+          <li>Data structures</li>
+          <li>ASP.NET Core MVC</li>
+        </ul>
+      </article>
+      <article class="role">
+        <h3 class="h3">Flutter Mobile App Development Diploma</h3>
+        <p class="meta">Route IT Training Center, Cairo. Expected September 2026</p>
+      </article>
+      <article class="role">
+        <h3 class="h3">Flutter Mobile App Development Training</h3>
+        <p class="meta">Information Technology Institute (ITI), Cairo. Completed</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="section" id="skills" aria-labelledby="skills-h">
+    <h2 id="skills-h">Technical skills</h2>
+    <div class="skill-groups">
+      <div class="skill-group lead">
+        <h3>Mobile apps with Flutter</h3>
+        <p>The area I know best and use most.</p>
+        <ul class="chips">
+          <li>Flutter</li><li>Dart</li><li>Provider</li><li>Cubit / BLoC</li><li>MVVM</li><li>get_it</li>
+          <li>Firebase Auth</li><li>Firestore</li><li>Cloud Functions</li><li>REST APIs</li>
+          <li>Material Design</li><li>Responsive UI</li><li>Reusable widgets</li><li>HTTP and JSON</li><li>SharedPreferences</li><li>Async programming</li><li>Arabic / English localization</li><li>RTL layouts</li><li>Dark mode</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Desktop software</h3>
+        <ul class="chips">
+          <li>Java</li><li>JavaFX</li><li>Swing</li><li>Python</li><li>Tkinter</li><li>PyInstaller</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Web</h3>
+        <ul class="chips">
+          <li>C#</li><li>ASP.NET Core MVC</li><li>Entity Framework Core</li><li>Data validation</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Databases</h3>
+        <ul class="chips">
+          <li>SQL Server (T-SQL)</li><li>PostgreSQL</li><li>ER modelling</li><li>Joins, views, subqueries</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Foundations and tools</h3>
+        <ul class="chips">
+          <li>OOP</li><li>Data structures and algorithms</li><li>C++ problem solving</li><li>Debugging</li><li>UML and DFD</li><li>Git and GitHub</li><li>Postman</li><li>Android Studio</li><li>VS Code</li><li>IntelliJ</li><li>Visual Studio</li><li>Xcode</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section" id="experience" aria-labelledby="exp-h">
+    <h2 id="exp-h">Experience</h2>
+    <div>
+      <article class="role">
+        <h3 class="h3">Primary developer, ClinicOS</h3>
+        <p class="meta">Graduation project team, built for real clinic use</p>
+        <ul>
+          <li>Built the desktop app and its PostgreSQL database with role-based access for receptionists, doctors and admins.</li>
+          <li>Set up a Linux server for the database and connected Windows clients over the network.</li>
+          <li>Packaged everything as a single Windows executable and wrote the project documentation.</li>
+          <li>Helped teammates turn text descriptions into UML diagrams for the analysis course.</li>
+        </ul>
+      </article>
+      <article class="role">
+        <h3 class="h3">Contributor, Virtual Study Spaces</h3>
+        <p class="meta">Team web app built with Next.js and NestJS</p>
+        <ul>
+          <li>Audited the app for quality issues before release.</li>
+          <li>Diagnosed a PDF upload bug that only appeared in Safari.</li>
+        </ul>
+      </article>
+      <article class="role">
+        <h3 class="h3">Contributor, Saffron &amp; Leaf</h3>
+        <p class="meta">Team cooking and recipe platform</p>
+        <ul>
+          <li>Contributed to the build and to the shared design system document the team worked from.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="section" id="projects" aria-labelledby="proj-h">
+    <h2 id="proj-h">Projects</h2>
+    <div>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="mobile" aria-pressed="false">Mobile</button>
+        <button type="button" data-filter="desktop" aria-pressed="false">Desktop</button>
+        <button type="button" data-filter="web" aria-pressed="false">Web</button>
+      </div>
+
+      <div class="cases">
+        <article class="case case-lead" data-type="mobile">
+          <div class="case-head"><h3>Evently</h3><span class="tag">Mobile</span></div>
+          <p class="what">An event planning app. People create and edit events, browse by category, keep favourites, and use it in Arabic or English with light or dark mode.</p>
+          <dl>
+            <dt>My role</dt><dd>Developer of the whole app: screens, state management, sign-in and cloud backend.</dd>
+            <dt>Tools</dt><dd>Flutter, Dart, Provider, Firebase Auth (email and Google), Firestore, Cloud Functions, intl.</dd>
+            <dt>Result</dt><dd>A complete, bilingual app with right-to-left layouts, dark mode, and a custom password reset flow built on a Cloud Function.</dd>
+          </dl>
+          <a class="case-link" href="https://github.com/Youssif312/evently" target="_blank" rel="noopener">View code on GitHub</a>
+        </article>
+
+        <article class="case case-lead" data-type="desktop">
+          <div class="case-head"><h3>ClinicOS</h3><span class="tag">Desktop</span></div>
+          <p class="what">A clinic management system for outpatient clinics. It keeps patient records, visits, appointments, doctors, users and stock in one place, with patient photos and scans filed by patient.</p>
+          <dl>
+            <dt>My role</dt><dd>Primary developer and deployment: application, database, server setup and documentation.</dd>
+            <dt>Tools</dt><dd>Python, Tkinter, PostgreSQL, PyInstaller, Linux server, draw.io.</dd>
+            <dt>Result</dt><dd>One Windows executable that connects to a shared database server, with different permissions for receptionists, doctors and admins. It also serves as the team's graduation project.</dd>
+          </dl>
+        </article>
+
+        <article class="case case-compact" data-type="mobile">
+          <div class="case-head"><h3>Islami</h3><span class="tag">Mobile</span></div>
+          <p class="what">An offline Quran and Islamic utility app.</p>
+          <dl>
+            <dt>My role</dt><dd>Developer: interface, navigation and content modules.</dd>
+            <dt>Tools</dt><dd>Flutter, Dart, SVG rendering, Material Design.</dd>
+            <dt>Result</dt><dd>A full Quran reader (114 Surahs), a digital Sebha counter, radio streaming and localized prayer times, all in one persistent bottom navigation.</dd>
+          </dl>
+          <a class="case-link" href="https://github.com/Youssif312/islami" target="_blank" rel="noopener">View code on GitHub</a>
+        </article>
+
+        <article class="case case-compact" data-type="mobile">
+          <div class="case-head"><h3>Space Explorer</h3><span class="tag">Mobile</span></div>
+          <p class="what">An interactive solar system app with smooth onboarding.</p>
+          <dl>
+            <dt>My role</dt><dd>Designer and developer of the whole app.</dd>
+            <dt>Tools</dt><dd>Flutter, Dart, responsive layouts, animations.</dd>
+            <dt>Result</dt><dd>Planet screens that calculate values such as gravity and orbital metrics, and adapt fluidly to different screen sizes.</dd>
+          </dl>
+        </article>
+
+        <article class="case case-compact" data-type="mobile">
+          <div class="case-head"><h3>Movies App</h3><span class="tag">Mobile</span><span class="status">In progress</span></div>
+          <p class="what">A movies app with Firebase sign-in and English and Arabic support.</p>
+          <dl>
+            <dt>My role</dt><dd>Developer: authentication, localization and UI clean-up.</dd>
+            <dt>Tools</dt><dd>Flutter, MVVM, Cubit, get_it, Firebase Auth, easy_localization.</dd>
+            <dt>Result</dt><dd>A layered codebase (data source, repository, view model, view) that is easy to extend, plus a refactored sign-in UI.</dd>
+          </dl>
+        </article>
+
+        <article class="case case-compact" data-type="mobile">
+          <div class="case-head"><h3>News App</h3><span class="tag">Mobile</span></div>
+          <p class="what">A live news reader with categories, source filtering and search.</p>
+          <dl>
+            <dt>My role</dt><dd>Developer: interface, search and API integration.</dd>
+            <dt>Tools</dt><dd>Flutter, Dart, NewsAPI, http, url_launcher, native splash screen.</dd>
+            <dt>Result</dt><dd>Tabs for Business, Tech and Sports, search that filters as you type, a draggable article preview sheet, and a link through to the full article.</dd>
+          </dl>
+          <a class="case-link" href="https://github.com/Youssif312/news" target="_blank" rel="noopener">View code on GitHub</a>
+        </article>
+
+        <article class="case case-compact" data-type="desktop">
+          <div class="case-head"><h3>InventoryPro</h3><span class="tag">Desktop</span></div>
+          <p class="what">An inventory app that manages stock, orders, clients, offers and reports, with a login and staff roles.</p>
+          <dl>
+            <dt>My role</dt><dd>Developer of the full application for an advanced programming course.</dd>
+            <dt>Tools</dt><dd>Java, JavaFX, Jakarta Mail, IntelliJ IDEA.</dd>
+            <dt>Result</dt><dd>Order confirmation emails, role-based access, and a README with setup steps, prepared for public release on GitHub.</dd>
+          </dl>
+        </article>
+
+        <article class="case case-compact" data-type="desktop">
+          <div class="case-head"><h3>Vehicle Rental System</h3><span class="tag">Desktop</span><span class="status">In progress</span></div>
+          <p class="what">An admin tool for managing a vehicle rental business.</p>
+          <dl>
+            <dt>My role</dt><dd>Developer of the admin screens and business rules.</dd>
+            <dt>Tools</dt><dd>Java, JavaFX.</dd>
+            <dt>Result</dt><dd>Edit forms on every admin table, phone number validation, dropdown filters, and vehicles that release automatically when a rental ends.</dd>
+          </dl>
+        </article>
+
+        <article class="case case-compact" data-type="web">
+          <div class="case-head"><h3>University Management</h3><span class="tag">Web</span></div>
+          <p class="what">A university records site with create, edit, delete and search.</p>
+          <dl>
+            <dt>My role</dt><dd>Developer of the site and its database.</dd>
+            <dt>Tools</dt><dd>C#, ASP.NET Core MVC, Entity Framework Core, SQL Server.</dd>
+            <dt>Result</dt><dd>Forms with validation rules, so bad data is stopped before it reaches the database.</dd>
+          </dl>
+        </article>
+      </div>
+
+      <p class="also">Also built: a delivery-route planner with animated trucks (Python and pygame), a WhatsApp-style chat screen (Flutter), and a course manager (Java Swing).</p>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="section" id="achievements" aria-labelledby="ach-h">
+    <h2 id="ach-h">Achievements and training</h2>
+    <ul class="wins">
+      <li>
+        <h3>Software built for real use</h3>
+        <p>ClinicOS is designed to run in an actual clinic, not just to earn a grade.</p>
+      </li>
+      <li>
+        <h3>Bilingual apps with right-to-left support</h3>
+        <p>Full Arabic and English in Evently, and in progress in the Movies App.</p>
+      </li>
+      <li>
+        <h3>Secure sign-in and custom cloud logic</h3>
+        <p>Email and Google sign-in, plus a password reset flow running on Firebase Cloud Functions.</p>
+      </li>
+      <li>
+        <h3>Public release preparation</h3>
+        <p>InventoryPro was cleaned up and documented for GitHub, with known limitations written down honestly.</p>
+      </li>
+      <li>
+        <h3>Egyptian Collegiate Programming Contest</h3>
+        <p>Competed nationally in a team of three, solving algorithm and data structure problems in C++ under time and memory limits.</p>
+      </li>
+      <li>
+        <h3>Flutter training at ITI and Route IT</h3>
+        <p>Completed Flutter training at the Information Technology Institute and finishing a Flutter diploma at Route IT in September 2026.</p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services" aria-labelledby="serv-h">
+    <h2 id="serv-h">Services I can offer</h2>
+    <div>
+      <ul class="services">
+        <li>
+          <h3>Mobile apps for iOS and Android</h3>
+          <p>One Flutter codebase for both stores, with sign-in, cloud data, dark mode and Arabic or English screens.</p>
+          <p class="fit">Good fit for startups, events, content and community apps.</p>
+        </li>
+        <li>
+          <h3>Desktop tools for small businesses</h3>
+          <p>Windows software with a shared database and different access for each staff role.</p>
+          <p class="fit">Good fit for clinics, shops, rentals and stock control.</p>
+        </li>
+        <li>
+          <h3>Web apps and back-office sites</h3>
+          <p>Forms, search and reports on ASP.NET Core and SQL Server, with validation that keeps data clean.</p>
+          <p class="fit">Good fit for internal tools and record keeping.</p>
+        </li>
+        <li>
+          <h3>Database design and documentation</h3>
+          <p>Clear schemas, ER and UML diagrams, and written guides your team can follow.</p>
+          <p class="fit">Good fit for projects that need a plan before code.</p>
+        </li>
+      </ul>
+      <p class="services-note">Open to internships, junior roles and freelance projects.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact" aria-labelledby="contact-h">
+    <h2 id="contact-h">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-form">
+        <h3>Have a project or a role in mind?</h3>
+        <p>Tell me what you need. I'll reply with questions or a rough plan.</p>
+        <div class="field">
+          <label for="c-name">Your name</label>
+          <input id="c-name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="c-msg">What do you need?</label>
+          <textarea id="c-msg"></textarea>
+        </div>
+        <a class="btn btn-primary" id="c-send" data-contact="email" href="#contact">Open email draft</a>
+      </div>
+      <div>
+        <ul class="contact-links">
+          <li><span>Location</span><strong>Cairo, Egypt</strong></li>
+          <li><span>Email</span><a data-contact="email" data-show="email" href="#contact"></a></li>
+          <li><span>GitHub</span><a data-contact="github" data-show="github" target="_blank" rel="noopener" href="#contact"></a></li>
+          <li><span>LinkedIn</span><a data-contact="linkedin" data-show="linkedin" target="_blank" rel="noopener" href="#contact"></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Youssef Abdalla Mohamed. Flutter and software developer.</div>
+</footer>
+
+<script>
+(function () {
+  // Edit these three values to update every contact link on the page.
+  var CONTACT = {
+    email: "youssefabdalla312@gmail.com",
+    github: "https://github.com/Youssif312",
+    linkedin: "https://www.linkedin.com/in/youssef-abdalla-749a01372"
+  };
+
+  function shown(v) { return v.replace(/^https?:\/\/(www\.)?/, ""); }
+  document.querySelectorAll("[data-contact]").forEach(function (a) {
+    var k = a.getAttribute("data-contact");
+    a.setAttribute("href", k === "email" ? "mailto:" + CONTACT.email : CONTACT[k]);
+    if (a.hasAttribute("data-show")) a.textContent = shown(CONTACT[k]);
+  });
+
+  // Email draft built from the two fields
+  var nameEl = document.getElementById("c-name");
+  var msgEl = document.getElementById("c-msg");
+  var send = document.getElementById("c-send");
+  function updateDraft() {
+    var who = nameEl.value.trim();
+    var subject = who ? "Project enquiry from " + who : "Project enquiry";
+    send.setAttribute("href", "mailto:" + CONTACT.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(msgEl.value));
+  }
+  nameEl.addEventListener("input", updateDraft);
+  msgEl.addEventListener("input", updateDraft);
+
+  // Phone sketch: English and Arabic (right-to-left)
+  var screen = document.getElementById("screen");
+  var btnEn = document.getElementById("lang-en");
+  var btnAr = document.getElementById("lang-ar");
+  function setLang(l) {
+    screen.setAttribute("dir", l === "ar" ? "rtl" : "ltr");
+    screen.setAttribute("lang", l);
+    screen.querySelectorAll("[data-en]").forEach(function (el) {
+      el.textContent = el.getAttribute("data-" + l);
+    });
+    btnEn.setAttribute("aria-pressed", String(l === "en"));
+    btnAr.setAttribute("aria-pressed", String(l === "ar"));
+  }
+  btnEn.addEventListener("click", function () { setLang("en"); });
+  btnAr.addEventListener("click", function () { setLang("ar"); });
+
+  // Project filters
+  var filterBtns = document.querySelectorAll(".filters button");
+  var cases = document.querySelectorAll(".case");
+  filterBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var f = b.getAttribute("data-filter");
+      filterBtns.forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      cases.forEach(function (c) {
+        c.hidden = !(f === "all" || c.getAttribute("data-type") === f);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
